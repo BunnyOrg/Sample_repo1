@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: BunnyOrg/Org-marketplace/actions/checkout@v4
+        uses: BunnyOrg/Org-marketplace/actions/checkout@main
 
       - name: Print txt file
         shell: bash
