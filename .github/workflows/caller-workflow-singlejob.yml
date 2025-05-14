@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: BunnyOrg/Org-marketplace/actions/checkout@v4
+        uses: /actions/checkout@v4
 
       - name: Print txt file
         shell: bash
@@ -17,6 +17,11 @@ jobs:
          cat sample.txt
          echo "**********************"
 
+      - name: Setup GCC
+        uses: Dup4/actions-setup-gcc@v1
+        with:
+          version: latest
+     
       - name: compile C code
         uses: BunnyOrg/Org-marketplace/actions/compile@main
         with:
