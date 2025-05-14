@@ -25,4 +25,4 @@ jobs:
       - name: compile C code
         uses: BunnyOrg/Org-marketplace/actions/compile@main
         with:
-          c_file: "/sample.c"
+          c_file: "sample.c"
