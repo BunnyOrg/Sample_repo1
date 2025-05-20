@@ -17,6 +17,6 @@ jobs:
           run: |
             echo "Running Script"
             cd /work
-            sudo apt install gcc -y
+            apt install gcc -y
             gcc sample.c -o output_binary
             echo "Binary created: output_binary"
