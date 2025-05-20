@@ -1,0 +1,21 @@
+name: Docker Run command
+
+on:
+  workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Docker command run
+        uses: BunnyOrg/Org-marketplace/actions/docker-run@main
+        with:
+          image: ubuntu:latest
+          run: |
+            echo "Running Script"
+            cd /work
+            gcc sample.c -o output_binary
+            echo "Binary created: output_binary"
