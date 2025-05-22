@@ -17,14 +17,12 @@ jobs:
           run: |
             echo "Running Script"
             cd /work
-            apt update && apt upgrade
-            apt install gcc -y
             gcc sample.c -o output_binary
             echo "Binary created"
-            cat output binary
+            cat output_binary
             
       - name: Upload Output
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path: ./
+          path: /
