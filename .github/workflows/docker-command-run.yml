@@ -13,9 +13,16 @@ jobs:
       - name: Docker command run
         uses: BunnyOrg/Org-marketplace/actions/docker-run@main
         with:
-          image: ubuntu:latest
+          image: gcc:latest
           run: |
             echo "Running Script"
             cd /work
             gcc sample.c -o output_binary
-            echo "Binary created: output_binary"
+            echo "Binary created"
+            cat output binary
+            
+      - name: Upload Output
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: ./
