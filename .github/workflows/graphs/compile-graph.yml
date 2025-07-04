@@ -1,0 +1,72 @@
+entry: gh-start
+executions:
+  - src:
+      node: gh-start
+      port: exec-on-workflow_dispatch
+    dst:
+      node: gh-checkout
+      port: exec
+  - src:
+      node: gh-bunnyorg-compile-v1-0-0-silver-pink-raspberry
+      port: exec
+    dst:
+      node: gh-actions-upload-artifact-green-watermelon-cranberry
+      port: exec
+  - src:
+      node: gh-checkout
+      port: exec
+    dst:
+      node: gh-dup4-actions-setup-gcc-v1-raspberry-apple-silver
+      port: exec
+  - src:
+      node: gh-dup4-actions-setup-gcc-v1-raspberry-apple-silver
+      port: exec
+    dst:
+      node: gh-bunnyorg-compile-v1-0-0-silver-pink-raspberry
+      port: exec
+connections: []
+nodes:
+  - id: gh-start
+    type: gh-start@v1
+    position:
+      x: -100
+      y: -10
+    settings:
+      folded: false
+  - id: gh-checkout
+    type: github.com/actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+    position:
+      x: 200
+      y: 790
+    settings:
+      folded: false
+  - id: gh-bunnyorg-compile-v1-0-0-silver-pink-raspberry
+    type: github.com/bunnyorg/compile@24463af8f30674a65fc363edd78180e68eeff56f
+    position:
+      x: 940
+      y: 800
+    inputs:
+      c_file: Sample.c
+    settings:
+      folded: false
+  - id: gh-actions-upload-artifact-green-watermelon-cranberry
+    type: >-
+      github.com/actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+    position:
+      x: 1250
+      y: 800
+    inputs:
+      path: ${{ github.workspace }}
+    settings:
+      folded: false
+  - id: gh-dup4-actions-setup-gcc-v1-raspberry-apple-silver
+    type: github.com/dup4/actions-setup-gcc@3e3b2ff18c6df33588500e965fa0d2507aeb4429
+    position:
+      x: 630
+      y: 800
+    settings:
+      folded: false
+registries:
+  - github.com/bunnyorg/compile@v1.0.0
+  - github.com/dup4/actions-setup-gcc@v1
+description: ''
