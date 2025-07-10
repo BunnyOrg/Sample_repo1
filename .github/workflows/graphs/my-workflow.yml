@@ -18,6 +18,12 @@ executions:
     dst:
       node: run-v1-cat-shark-gray
       port: exec
+  - src:
+      node: run-v1-cat-shark-gray
+      port: exec-success
+    dst:
+      node: gh-actions-upload-artifact-blackberry-cat-elephant
+      port: exec
 connections: []
 nodes:
   - id: gh-start
@@ -44,27 +50,18 @@ nodes:
   - id: run-v1-cat-shark-gray
     type: run@v1
     position:
-      x: 900
-      y: 460
+      x: 910
+      y: 430
     inputs:
-      script: |-
-        echo "Compiling: ${{ inputs.c_file }}"
-                gcc "${{ inputs.c_File }}" -o output_binary
-                if [ $? -eq 0 ]; then
-                  echo "Compilation successful!"
-                else
-                  echo "Compilation failed!"
-                  exit 1
-                fi
-                echo "Binary created: output_binary"
+      script: gcc "sample.c" -o output_binary
     settings:
       folded: false
   - id: gh-actions-upload-artifact-blackberry-cat-elephant
     type: >-
       github.com/actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
     position:
-      x: 800
-      y: 520
+      x: 880
+      y: 640
     inputs:
       path: ${{ github.workspace }}
     settings:
