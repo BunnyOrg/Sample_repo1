@@ -1,0 +1,74 @@
+entry: gh-start
+executions:
+  - src:
+      node: gh-start
+      port: exec-on-workflow_dispatch
+    dst:
+      node: gh-checkout
+      port: exec
+  - src:
+      node: gh-checkout
+      port: exec
+    dst:
+      node: gh-dup4-actions-setup-gcc-v1-parrot-purple-octopus
+      port: exec
+  - src:
+      node: gh-dup4-actions-setup-gcc-v1-parrot-purple-octopus
+      port: exec
+    dst:
+      node: run-v1-cat-shark-gray
+      port: exec
+connections: []
+nodes:
+  - id: gh-start
+    type: gh-start@v1
+    position:
+      x: 100
+      y: 100
+    settings:
+      folded: false
+  - id: gh-checkout
+    type: github.com/actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+    position:
+      x: 450
+      y: 100
+    settings:
+      folded: false
+  - id: gh-dup4-actions-setup-gcc-v1-parrot-purple-octopus
+    type: github.com/dup4/actions-setup-gcc@3e3b2ff18c6df33588500e965fa0d2507aeb4429
+    position:
+      x: 880
+      y: 160
+    settings:
+      folded: false
+  - id: run-v1-cat-shark-gray
+    type: run@v1
+    position:
+      x: 900
+      y: 460
+    inputs:
+      script: |-
+        echo "Compiling: ${{ inputs.c_file }}"
+                gcc "${{ inputs.c_File }}" -o output_binary
+                if [ $? -eq 0 ]; then
+                  echo "Compilation successful!"
+                else
+                  echo "Compilation failed!"
+                  exit 1
+                fi
+                echo "Binary created: output_binary"
+    settings:
+      folded: false
+  - id: gh-actions-upload-artifact-blackberry-cat-elephant
+    type: >-
+      github.com/actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+    position:
+      x: 800
+      y: 520
+    inputs:
+      path: ${{ github.workspace }}
+    settings:
+      folded: false
+registries:
+  - github.com/dup4/actions-setup-gcc@v1
+description: ''
