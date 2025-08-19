@@ -1,0 +1,27 @@
+name: Docker Run Example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  docker-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Commands in Docker
+        uses: BunnyOrg/Org-marketplace/actions/docker-run@main
+        with:
+          image: gcc:latest
+          commands: |
+            echo "Running Script"
+            cd /work
+            gcc sample.c -o output_binary
+            echo "Binary created"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-artifacts
+          path: ${{ github.workspace }}
