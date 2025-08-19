@@ -16,10 +16,8 @@ jobs:
           image: gcc:latest
           run: |
             echo "Running Script"
-            cd /work
             gcc sample.c -o output_binary
             echo "Binary created"
-            cat output_binary
             
       - name: Upload Output
         uses: actions/upload-artifact@v4
